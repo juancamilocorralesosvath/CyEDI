@@ -40,7 +40,6 @@ public class GenericLinkedList<T extends Comparable<T>> {
             node.setNext(this.head);
             // el previo de la anterior cabeza sera el nuevo nodo.
             this.head = node;
-
         }
     }
     public String printList(){
@@ -107,10 +106,8 @@ public class GenericLinkedList<T extends Comparable<T>> {
     // voy agregando todos los nodos del conjunto B al conjunto A
     public void union(GenericSet<T> set){
         GenericNode<T> current = set.getFirstElement();
-        System.out.println("que pasa?");
         while(current != null){
-            System.out.println(current.getItem());
-            add(current);
+            add(current.getItem());
             current = current.getNext();
         }
     }
@@ -119,19 +116,25 @@ public class GenericLinkedList<T extends Comparable<T>> {
     public GenericLinkedList<T> intersection(GenericSet<T> set){
         GenericLinkedList<T> intersectionList = new GenericLinkedList<>();
         GenericNode<T> currentA = this.head;
-        GenericNode<T> currentB = set.getFirstElement();
-        while (currentA != null){
-            while (currentB != null){
-                // si son iguales, van en la interseccion
-                if (currentA.getItem().compareTo(currentB.getItem()) == 0){
-                    intersectionList.add(currentA);
+        System.out.println(currentA == null);
+        if(currentA != null) {
+            while (currentA != null) {
+                T item = currentA.getItem();
+                GenericNode<T> currentB = set.getFirstElement();
+                while (currentB != null) {
+                    // si son iguales, van en la interseccion
+                    if (currentB.getItem().compareTo(item) == 0) {
+                        intersectionList.add(item);
+                    }
+                    currentB = currentB.getNext();
+
                 }
-                currentB = currentB.getNext();
+                currentA = currentA.getNext();
             }
-            currentA = currentA.getNext();
         }
         return intersectionList;
     }
+
     // el conjunto A es el de esta clase, el conjunto B es el que se pasa como parametro
     // por lo tanto, la diferencia sera el conjunto en el cual, de todos sus elementos, ninguno de ellos
     // se encuentra en B.

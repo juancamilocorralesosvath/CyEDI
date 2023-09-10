@@ -6,6 +6,7 @@ public class GenericNode<T extends Comparable<T>> {
 
     public GenericNode(T item){
         this.item = item;
+        this.next = null;
     }
 
     public T getItem() {
