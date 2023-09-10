@@ -26,8 +26,10 @@ public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
     @Override
     public boolean union(GenericSet<T> set) {
         boolean result =  false;
-
+        System.out.println("what is happening?");
         if(!set.isEmpty()) {
+            // modifico la lista actual.
+            System.out.println("entra?");
             genericLinkedList.union(set);
             result = true;
         }
@@ -80,5 +82,8 @@ public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
     }
     public GenericNode<T> getFirstElement(){
         return genericLinkedList.getHead();
+    }
+    public String print(){
+        return genericLinkedList.printList();
     }
 }

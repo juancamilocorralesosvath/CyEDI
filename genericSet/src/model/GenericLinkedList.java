@@ -52,7 +52,7 @@ public class GenericLinkedList<T extends Comparable<T>> {
         // y cuando llego al final de la lista
         // list is empty
         if(this.head == null){
-            str = "list is empty";
+            str = "set is empty";
         } else if (current.getNext() == null) {
             str += "" + current.getItem();
         }else {
@@ -64,9 +64,11 @@ public class GenericLinkedList<T extends Comparable<T>> {
     public boolean contains(T e){
         boolean result = false;
         GenericNode<T> current = this.head;
-        while( !result  || current != null){
-            if (current.getItem().compareTo(e) == 0) result = true;
-            current = current.getNext();
+        if (this.head != null){
+            while( !result  && current != null){
+                if (current.getItem().compareTo(e) == 0) result = true;
+                current = current.getNext();
+            }
         }
         return result;
     }
@@ -90,7 +92,7 @@ public class GenericLinkedList<T extends Comparable<T>> {
            size--;
            result = true;
        }else{
-           while( !result  || current != null){
+           while( !result  && current != null){
                if (current.getItem().compareTo(e) == 0) {
                    prev.setNext(current.getNext());
                    size--;
@@ -105,7 +107,9 @@ public class GenericLinkedList<T extends Comparable<T>> {
     // voy agregando todos los nodos del conjunto B al conjunto A
     public void union(GenericSet<T> set){
         GenericNode<T> current = set.getFirstElement();
+        System.out.println("que pasa?");
         while(current != null){
+            System.out.println(current.getItem());
             add(current);
             current = current.getNext();
         }
