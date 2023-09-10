@@ -25,17 +25,38 @@ public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
 
     @Override
     public boolean union(GenericSet<T> set) {
-        return false;
+        boolean result =  false;
+
+        if(!set.isEmpty()) {
+            genericLinkedList.union(set);
+            result = true;
+        }
+        return result;
     }
 
     @Override
     public boolean intersection(GenericSet<T> set) {
-        return false;
+        boolean result =  false;
+
+        if(!set.isEmpty()) {
+            // la referencia ahora apuntara a la nueva lista formada
+            // por la interseccion.
+            genericLinkedList = genericLinkedList.intersection(set);
+            result = true;
+        }
+        return result;
     }
 
     @Override
     public boolean difference(GenericSet<T> set) {
-        return false;
+        boolean result =  false;
+
+        if(!set.isEmpty()) {
+            // modifico la lista actual.
+            genericLinkedList.difference(set);
+            result = true;
+        }
+        return result;
     }
 
     @Override
@@ -56,5 +77,8 @@ public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
     @Override
     public boolean isEmpty() {
         return genericLinkedList.isEmpty();
+    }
+    public GenericNode<T> getFirstElement(){
+        return genericLinkedList.getHead();
     }
 }

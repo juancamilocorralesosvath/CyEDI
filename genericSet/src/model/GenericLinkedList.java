@@ -87,11 +87,13 @@ public class GenericLinkedList<T extends Comparable<T>> {
        GenericNode<T> prev = null;
        if (this.head.getItem().compareTo(e) == 0){
            this.head = this.head.getNext();
+           size--;
            result = true;
        }else{
            while( !result  || current != null){
                if (current.getItem().compareTo(e) == 0) {
                    prev.setNext(current.getNext());
+                   size--;
                    result = true;
                }
                prev = current;
@@ -99,5 +101,50 @@ public class GenericLinkedList<T extends Comparable<T>> {
            }
        }
         return result;
+    }
+    // voy agregando todos los nodos del conjunto B al conjunto A
+    public void union(GenericSet<T> set){
+        GenericNode<T> current = set.getFirstElement();
+        while(current != null){
+            add(current);
+            current = current.getNext();
+        }
+    }
+    // en una nueva lista generica agrego los elementos comunes entre el
+    // conjunto A y el conjunto B (pasado por parametro).
+    public GenericLinkedList<T> intersection(GenericSet<T> set){
+        GenericLinkedList<T> intersectionList = new GenericLinkedList<>();
+        GenericNode<T> currentA = this.head;
+        GenericNode<T> currentB = set.getFirstElement();
+        while (currentA != null){
+            while (currentB != null){
+                // si son iguales, van en la interseccion
+                if (currentA.getItem().compareTo(currentB.getItem()) == 0){
+                    intersectionList.add(currentA);
+                }
+                currentB = currentB.getNext();
+            }
+            currentA = currentA.getNext();
+        }
+        return intersectionList;
+    }
+    // el conjunto A es el de esta clase, el conjunto B es el que se pasa como parametro
+    // por lo tanto, la diferencia sera el conjunto en el cual, de todos sus elementos, ninguno de ellos
+    // se encuentra en B.
+    public void difference(GenericSet<T> set){
+        GenericLinkedList<T> differenceList = new GenericLinkedList<>();
+        GenericNode<T> currentA = this.head;
+        GenericNode<T> currentB = set.getFirstElement();
+        while (currentA != null){
+            while (currentB != null){
+                // si son iguales, este elemento no va.
+                // por lo tanto, lo elimino de mi actual lista.
+                if (currentA.getItem().compareTo(currentB.getItem()) == 0){
+                    delete(currentA.getItem());
+                }
+                currentB = currentB.getNext();
+            }
+            currentA = currentA.getNext();
+        }
     }
 }
