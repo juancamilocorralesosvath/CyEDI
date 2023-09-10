@@ -104,19 +104,26 @@ public class GenericLinkedList<T extends Comparable<T>> {
         return result;
     }
     // voy agregando todos los nodos del conjunto B al conjunto A
-    public void union(GenericSet<T> set){
+    public boolean union(GenericSet<T> set){
+        boolean result = false;
+        // ojo: hay que verificar duplicados.
         GenericNode<T> current = set.getFirstElement();
         while(current != null){
-            add(current.getItem());
+            // si ya tengo este elemento, no lo puedo insertar
+            if(!contains(current.getItem())) {
+                add(current.getItem());
+                // se ha agregado por lo menos un elemento
+                result = true;
+            }
             current = current.getNext();
         }
+        return result;
     }
     // en una nueva lista generica agrego los elementos comunes entre el
     // conjunto A y el conjunto B (pasado por parametro).
     public GenericLinkedList<T> intersection(GenericSet<T> set){
         GenericLinkedList<T> intersectionList = new GenericLinkedList<>();
         GenericNode<T> currentA = this.head;
-        System.out.println(currentA == null);
         if(currentA != null) {
             while (currentA != null) {
                 T item = currentA.getItem();
@@ -139,10 +146,10 @@ public class GenericLinkedList<T extends Comparable<T>> {
     // por lo tanto, la diferencia sera el conjunto en el cual, de todos sus elementos, ninguno de ellos
     // se encuentra en B.
     public void difference(GenericSet<T> set){
-        GenericLinkedList<T> differenceList = new GenericLinkedList<>();
+        //GenericLinkedList<T> differenceList = new GenericLinkedList<>();
         GenericNode<T> currentA = this.head;
-        GenericNode<T> currentB = set.getFirstElement();
         while (currentA != null){
+            GenericNode<T> currentB = set.getFirstElement();
             while (currentB != null){
                 // si son iguales, este elemento no va.
                 // por lo tanto, lo elimino de mi actual lista.

@@ -83,8 +83,7 @@ public class Main {
         GenericSet<String> newSet = new GenericSet<>();
         newSet.add("hello");
         newSet.add("world");
-        set.difference(newSet);
-        printSet();
+        System.out.println(set.difference(newSet));
     }
     public int showMenuAndGetOption(){
         int input;

@@ -28,8 +28,7 @@ public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
         boolean result =  false;
         if(!set.isEmpty()) {
             // modifico la lista actual.
-            genericLinkedList.union(set);
-            result = true;
+            result = genericLinkedList.union(set);
         }
         return result;
     }
