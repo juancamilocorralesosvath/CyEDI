@@ -1,3 +1,4 @@
+/*
 package ui;
 import model.*;
 import java.util.Scanner;
@@ -104,7 +105,7 @@ public class Main {
         return input;
     }
     public static void main(String[] args){
-        Main m = new Main();
+        Main2 m = new Main2();
         int option = 0;
         do {
             option = m.showMenuAndGetOption();
@@ -112,3 +113,5 @@ public class Main {
         }while (option != 0);
     }
 }
+
+ */
