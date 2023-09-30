@@ -3,11 +3,20 @@ package model;
 public class HashNode<K, V> {
     private K key;
     private V value;
+    private HashNode<K, V> next;
     public HashNode(){
     }
     public HashNode(K key, V value){
         this.key = key;
         this.value = value;
+    }
+
+    public HashNode<K, V> getNext() {
+        return next;
+    }
+
+    public void setNext(HashNode<K, V> next) {
+        this.next = next;
     }
 
     public K getKey() {
