@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/genericHashTable/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/genericSet/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/stacksAndQueues/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Graph/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
