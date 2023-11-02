@@ -1,4 +1,4 @@
-package model;
+package dataStructures.IDataStructures;
 
 public interface IQueue<T> {
 	// Returns true if queue is empty.

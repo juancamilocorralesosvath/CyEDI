@@ -1,4 +1,6 @@
-package model;
+package dataStructures;
+
+import dataStructures.IDataStructures.IStack;
 
 import java.util.NoSuchElementException;
 

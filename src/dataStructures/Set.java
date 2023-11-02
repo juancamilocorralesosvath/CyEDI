@@ -1,18 +1,20 @@
-package model;
+package dataStructures;
 
-public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
-    private GenericLinkedList<T> genericLinkedList;
+import dataStructures.IDataStructures.ISet;
 
-    public GenericSet(){
-        genericLinkedList = new GenericLinkedList<>();
+
+public class Set<T extends Comparable<T>> implements ISet<T> {
+    private SetLinkedList setLinkedList;
+
+    public Set() {
+        setLinkedList = new SetLinkedList<>();
     }
-
     // se debe asegurar que el elemento ya no exista en el conjunto
     @Override
     public boolean add(T e) {
         boolean result = false;
         if(!contains(e)){
-            genericLinkedList.add(e);
+            setLinkedList.add(e);
             result = true;
         }
         return result;
@@ -20,30 +22,30 @@ public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
 
     @Override
     public boolean delete(T e) {
-        return genericLinkedList.delete(e);
+        return setLinkedList.delete(e);
     }
 
     @Override
-    public boolean union(GenericSet<T> set) {
+    public boolean union(Set<T> set) {
         boolean result =  false;
         if(!set.isEmpty()) {
             // modifico la lista actual.
-            result = genericLinkedList.union(set);
+            result = setLinkedList.union(set);
         }
         return result;
     }
 
     @Override
-    public boolean intersection(GenericSet<T> set) {
+    public boolean intersection(Set<T> set) {
         boolean result =  false;
         if(!set.isEmpty()) {
-            GenericLinkedList<T> interList = new GenericLinkedList<>();
-            interList = genericLinkedList.intersection(set);
+            SetLinkedList<T> interList = new SetLinkedList<>();
+            interList = setLinkedList.intersection(set);
             // si efectivamente hay elementos comunes, entonces
             if(interList.getHead() != null) {
                 // la referencia ahora apuntara a la nueva lista formada
                 // por la interseccion.
-                this.genericLinkedList = interList;
+                this.setLinkedList = interList;
                 result = true;
             }
         }
@@ -51,12 +53,12 @@ public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
     }
 
     @Override
-    public boolean difference(GenericSet<T> set) {
+    public boolean difference(Set<T> set) {
         boolean result =  false;
 
         if(!set.isEmpty()) {
             // modifico la lista actual.
-            genericLinkedList.difference(set);
+            setLinkedList.difference(set);
             result = true;
         }
         return result;
@@ -64,27 +66,27 @@ public class GenericSet<T extends Comparable<T>> implements IGenericSet<T>{
 
     @Override
     public boolean clear() {
-        return genericLinkedList.clear();
+        return setLinkedList.clear();
     }
 
     @Override
     public boolean contains(T e) {
-        return genericLinkedList.contains(e);
+        return setLinkedList.contains(e);
     }
 
     @Override
     public int size() {
-        return genericLinkedList.getSize();
+        return setLinkedList.getSize();
     }
 
     @Override
     public boolean isEmpty() {
-        return genericLinkedList.isEmpty();
+        return setLinkedList.isEmpty();
     }
-    public GenericNode<T> getFirstElement(){
-        return genericLinkedList.getHead();
+    public SetNode<T> getFirstElement(){
+        return setLinkedList.getHead();
     }
     public String print(){
-        return genericLinkedList.printList();
+        return setLinkedList.printList();
     }
 }

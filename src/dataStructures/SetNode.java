@@ -1,10 +1,10 @@
-package model;
+package dataStructures;
 
-public class GenericNode<T extends Comparable<T>> {
+public class SetNode<T extends Comparable<T>> {
     private T item;
-    private GenericNode<T> next;
+    private SetNode<T> next;
 
-    public GenericNode(T item){
+    public SetNode(T item){
         this.item = item;
         this.next = null;
     }
@@ -17,11 +17,11 @@ public class GenericNode<T extends Comparable<T>> {
         this.item = item;
     }
 
-    public GenericNode<T> getNext() {
+    public SetNode<T> getNext() {
         return next;
     }
 
-    public void setNext(GenericNode<T> next) {
+    public void setNext(SetNode<T> next) {
         this.next = next;
     }
 }

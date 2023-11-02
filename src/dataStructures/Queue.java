@@ -1,4 +1,6 @@
-package model;
+package dataStructures;
+
+import dataStructures.IDataStructures.IQueue;
 
 import java.util.NoSuchElementException;
 

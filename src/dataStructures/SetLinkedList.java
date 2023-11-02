@@ -1,18 +1,17 @@
-package model;
+package dataStructures;
 
-public class GenericLinkedList<T extends Comparable<T>> {
-    private GenericNode<T> head;
+public class SetLinkedList<T extends Comparable<T>>  {
+    private SetNode<T> head;
     private int size = 0;
-
-    public GenericLinkedList(){
+    public SetLinkedList(){
         this.head = null;
     }
 
-    public GenericNode<T> getHead() {
-        return head;
+    public SetNode<T> getHead() {
+        return this.head;
     }
 
-    public void setHead(GenericNode<T> head) {
+    public void setHead(SetNode<T> head) {
         this.head = head;
     }
 
@@ -25,12 +24,12 @@ public class GenericLinkedList<T extends Comparable<T>> {
     }
 
     public void add(T item){
-        GenericNode<T> helper = new GenericNode<>(item);
+        SetNode<T> helper = new SetNode<>(item);
         add(helper);
         size++;
     }
     // LIFO approach
-    private void add(GenericNode<T> node){
+    private void add(SetNode<T> node){
         // when list is empty
         if (this.head == null){
             this.head = node;
@@ -45,7 +44,7 @@ public class GenericLinkedList<T extends Comparable<T>> {
     public String printList(){
         return printList(this.head);
     }
-    private String printList(GenericNode<T> current){
+    private String printList(SetNode<T> current){
         String str = "";
         // dos casos base: cuando la lista esta vacia
         // y cuando llego al final de la lista
@@ -62,7 +61,7 @@ public class GenericLinkedList<T extends Comparable<T>> {
 
     public boolean contains(T e){
         boolean result = false;
-        GenericNode<T> current = this.head;
+        SetNode<T> current = this.head;
         if (this.head != null){
             while( !result  && current != null){
                 if (current.getItem().compareTo(e) == 0) result = true;
@@ -83,31 +82,31 @@ public class GenericLinkedList<T extends Comparable<T>> {
         return result;
     }
     public boolean delete(T e){
-       boolean result = false;
-       GenericNode<T> current = this.head;
-       GenericNode<T> prev = null;
-       if (this.head.getItem().compareTo(e) == 0){
-           this.head = this.head.getNext();
-           size--;
-           result = true;
-       }else{
-           while( !result  && current != null){
-               if (current.getItem().compareTo(e) == 0) {
-                   prev.setNext(current.getNext());
-                   size--;
-                   result = true;
-               }
-               prev = current;
-               current = current.getNext();
-           }
-       }
+        boolean result = false;
+        SetNode<T> current = this.head;
+        SetNode<T> prev = null;
+        if (this.head.getItem().compareTo(e) == 0){
+            this.head = this.head.getNext();
+            size--;
+            result = true;
+        }else{
+            while( !result  && current != null){
+                if (current.getItem().compareTo(e) == 0) {
+                    prev.setNext(current.getNext());
+                    size--;
+                    result = true;
+                }
+                prev = current;
+                current = current.getNext();
+            }
+        }
         return result;
     }
     // voy agregando todos los nodos del conjunto B al conjunto A
-    public boolean union(GenericSet<T> set){
+    public boolean union(Set<T> set){
         boolean result = false;
         // ojo: hay que verificar duplicados.
-        GenericNode<T> current = set.getFirstElement();
+        SetNode<T> current = set.getFirstElement();
         while(current != null){
             // si ya tengo este elemento, no lo puedo insertar
             if(!contains(current.getItem())) {
@@ -121,13 +120,13 @@ public class GenericLinkedList<T extends Comparable<T>> {
     }
     // en una nueva lista generica agrego los elementos comunes entre el
     // conjunto A y el conjunto B (pasado por parametro).
-    public GenericLinkedList<T> intersection(GenericSet<T> set){
-        GenericLinkedList<T> intersectionList = new GenericLinkedList<>();
-        GenericNode<T> currentA = this.head;
+    public SetLinkedList<T> intersection(Set<T> set){
+        SetLinkedList<T> intersectionList = new SetLinkedList<>();
+        SetNode<T> currentA = this.head;
         if(currentA != null) {
             while (currentA != null) {
                 T item = currentA.getItem();
-                GenericNode<T> currentB = set.getFirstElement();
+                SetNode<T> currentB = set.getFirstElement();
                 while (currentB != null) {
                     // si son iguales, van en la interseccion
                     if (currentB.getItem().compareTo(item) == 0) {
@@ -145,11 +144,11 @@ public class GenericLinkedList<T extends Comparable<T>> {
     // el conjunto A es el de esta clase, el conjunto B es el que se pasa como parametro
     // por lo tanto, la diferencia sera el conjunto en el cual, de todos sus elementos, ninguno de ellos
     // se encuentra en B.
-    public void difference(GenericSet<T> set){
+    public void difference(Set<T> set){
         //GenericLinkedList<T> differenceList = new GenericLinkedList<>();
-        GenericNode<T> currentA = this.head;
+        SetNode<T> currentA = this.head;
         while (currentA != null){
-            GenericNode<T> currentB = set.getFirstElement();
+            SetNode<T> currentB = set.getFirstElement();
             while (currentB != null){
                 // si son iguales, este elemento no va.
                 // por lo tanto, lo elimino de mi actual lista.
