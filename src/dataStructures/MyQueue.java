@@ -5,7 +5,7 @@ import dataStructures.IDataStructures.IQueue;
 import java.util.NoSuchElementException;
 
 // FIFO approach
-public class Queue<T> implements IQueue<T> {
+public class MyQueue<T> implements IQueue<T> {
 	private Node<T> first;
 	private Node<T> last;
 	private int size;
@@ -15,7 +15,7 @@ public class Queue<T> implements IQueue<T> {
 		private Node<T> next;
 	}
 	
-	public Queue() {
+	public MyQueue() {
 		this.first = null;
 		this.last = null;
 		this.size = 0;

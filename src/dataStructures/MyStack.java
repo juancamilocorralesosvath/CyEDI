@@ -5,7 +5,7 @@ import dataStructures.IDataStructures.IStack;
 import java.util.NoSuchElementException;
 
 // LIFO approach
-public class Stack<T> implements IStack<T> {
+public class MyStack<T> implements IStack<T> {
 	private Node<T> first;
 	private int size;
 	// clase auxiliar
@@ -13,7 +13,7 @@ public class Stack<T> implements IStack<T> {
 		private T item;
 		private Node<T> next;
 	}
-	public Stack() {
+	public MyStack() {
 		this.first = null;
 		this.size = 0;
 	}

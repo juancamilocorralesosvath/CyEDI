@@ -1,6 +1,6 @@
 package ui;
 
-import dataStructures.Queue;
+import dataStructures.MyQueue;
 
 import java.util.Scanner;
 
@@ -52,7 +52,7 @@ public class Main {
         }
         System.out.println(myStack.peek());
 */
-            Queue<Integer> myQueue = new Queue<>();
+            MyQueue<Integer> myQueue = new MyQueue<>();
             int n = m.sc.nextInt();
             if(n > 0) {
                 for (int i = 1; i <= n; i++) {
